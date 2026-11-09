@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JASONBOOK - Créer une publication</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#f0f2f5}
+header{background:#fff;display:flex;align-items:center;gap:12px;padding:12px 16px;box-shadow:0 1px 6px rgba(0,0,0,.1);position:sticky;top:0;z-index:20}
+header a{font-size:22px;text-decoration:none;color:#111}
+header h1{font-size:18px;flex:1}
+header .pub{border:none;background:#1877F2;color:#fff;padding:9px 20px;border-radius:8px;font-weight:800;cursor:pointer;font-size:14px}
+header .pub:disabled{background:#bcc0c4}
+.wrap{max-width:600px;margin:16px auto;padding:0 12px}
+.card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.user{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.avatar{width:44px;height:44px;border-radius:50%;background:#1877F2;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;overflow:hidden;flex-shrink:0}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.user b{font-size:15px}.user small{color:#65676b;font-size:12px}
+.user select{border:none;background:#f0f2f5;padding:5px 8px;border-radius:6px;font-size:12px;font-weight:700;outline:none;cursor:pointer;margin-top:3px}
+textarea{width:100%;min-height:130px;border:none;outline:none;font-size:18px;resize:vertical;font-family:inherit}
+textarea::placeholder{color:#999}
+.preview{margin-top:10px;position:relative}
+.preview img,.preview video{width:100%;border-radius:10px;max-height:450px;object-fit:cover}
+.preview .remove{position:absolute;top:8px;right:8px;background:#000a;color:#fff;border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px}
+.emoji-bar{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.emoji-bar button{border:none;background:#f0f2f5;font-size:20px;width:40px;height:40px;border-radius:10px;cursor:pointer}
+.emoji-bar button:active{transform:scale(.9)}
+.options{border-top:1px solid #eee;margin-top:14px}
+.options button{display:flex;justify-content:space-between;width:100%;border:none;background:none;padding:13px 4px;font-size:15px;font-weight:600;cursor:pointer;text-align:left}
+.options button span{color:#65676b}
+.msg{text-align:center;font-size:13px;color:#1877F2;font-weight:700;min-height:16px;margin-top:8px}
+.feeling{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.feeling button{border:1.5px solid #ddd;background:#fff;padding:8px 13px;border-radius:20px;cursor:pointer;font-size:13px}
+.feeling button.sel{background:#1877F2;color:#fff;border-color:#1877F2}
+</style>
+</head>
+<body>
+
+<header>
+<a href="feed.html">←</a>
+<h1>Créer une publication</h1>
+<button class="pub" id="btnPublier" onclick="publier()" disabled>Publier</button>
+</header>
+
+<div class="wrap">
+<div class="card">
+<div class="user">
+<div class="avatar" id="myAvatar">?</div>
+<div><b id="myNom">Chargement...</b><br>
+<select id="visibilite">
+<option value="Public">🌍 Public</option>
+<option value="Amis">👥 Amis</option>
+<option value="Moi uniquement">🔒 Moi uniquement</option>
+</select>
+</div>
+</div>
+
+<textarea id="texte" placeholder="Quoi de neuf ?" oninput="checkBtn()"></textarea>
+
+<div id="feelingBox" class="feeling" style="display:none">
+<button onclick="choisirFeeling(this,'😊 Heureux')">😊 Heureux</button>
+<button onclick="choisirFeeling(this,'❤️ Amoureux')">❤️ Amoureux</button>
+<button onclick="choisirFeeling(this,'😎 Cool')">😎 Cool</button>
+<button onclick="choisirFeeling(this,'🙏 Béni')">🙏 Béni</button>
+<button onclick="choisirFeeling(this,'🎉 En fête')">🎉 En fête</button>
+<button onclick="choisirFeeling(this,'💪 Motivé')">💪 Motivé</button>
+</div>
+<p id="feelingAffiche" style="font-size:13px;color:#1877F2;font-weight:700;margin-top:6px"></p>
+
+<div class="preview" id="preview" style="display:none">
+<img id="previewImg" style="display:none">
+<video id="previewVideo" controls style="display:none"></video>
+<button class="remove" onclick="retirerMedia()">✕</button>
+</div>
+
+<div class="emoji-bar">
+<button onclick="ajouterEmoji('😂')">😂</button>
+<button onclick="ajouterEmoji('❤️')">❤️</button>
+<button onclick="ajouterEmoji('🔥')">🔥</button>
+<button onclick="ajouterEmoji('😍')">😍</button>
+<button onclick="ajouterEmoji('🙏')">🙏</button>
+<button onclick="ajouterEmoji('👏')">👏</button>
+<button onclick="ajouterEmoji('😎')">😎</button>
+<button onclick="ajouterEmoji('🎉')">🎉</button>
+<button onclick="ajouterEmoji('💪')">💪</button>
+<button onclick="ajouterEmoji('🌍')">🌍</button>
+</div>
+
+<div class="options">
+<button onclick="document.getElementById('filePhoto').click()">📷 Photo <span>Ajouter</span></button>
+<button onclick="document.getElementById('fileVideo').click()">🎥 Vidéo <span>Ajouter</span></button>
+<button onclick="toggleFeeling()">😊 Humeur <span>Choisir</span></button>
+<button onclick="ajouterLocalisation()">📍 Localisation <span id="locLabel">Ajouter</span></button>
+</div>
+<input type="file" id="filePhoto" accept="image/*" style="display:none">
+<input type="file" id="fileVideo" accept="video/*" style="display:none">
+<p class="msg" id="msg"></p>
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, push, set, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+const firebaseConfig = { apiKey: "AIzaSyA24pBo8mBWiZssPtep--MMBdB7c8_Lu4U", authDomain: "starlink-investit.firebaseapp.com", databaseURL: "https://starlink-investit-default-rtdb.firebaseio.com", projectId: "starlink-investit", storageBucket: "starlink-investit.firebasestorage.app", messagingSenderId: "807081599583", appId: "1:807081599583:web:e00ec3959bc4acdae031ea" };
+const app = initializeApp(firebaseConfig); const db = getDatabase(app);
+const uid = localStorage.getItem('jasonbook_uid');
+if(!uid) location.href='index.html';
+const monNom = localStorage.getItem('jasonbook_nom') || "";
+const maPhoto = localStorage.getItem('jasonbook_photo') || "";
+let photoBase64="", videoBase64="", feeling="", localisation="";
+
+document.getElementById('myAvatar').innerHTML = maPhoto ? `<img src="${maPhoto}">` : monNom.charAt(0).toUpperCase();
+document.getElementById('myNom').innerText = monNom;
+
+window.checkBtn=()=>{
+  const txt=document.getElementById('texte').value.trim();
+  document.getElementById('btnPublier').disabled = !(txt || photoBase64 || videoBase64);
+};
+window.ajouterEmoji=(e)=>{
+  const t=document.getElementById('texte'); t.value+=e; checkBtn(); t.focus();
+};
+window.toggleFeeling=()=>{
+  const b=document.getElementById('feelingBox'); b.style.display
