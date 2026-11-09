@@ -3,293 +3,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JASONBOOK - Monde Entier</title>
+<title>JASONBOOK - Connecte-toi avec le monde</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:linear-gradient(135deg,#0F2027,#203A43,#1877F2);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
-.card{background:#fff;width:100%;max-width:460px;border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35)}
-.top{background:#1877F2;padding:20px;text-align:center;color:#fff}
-.top .j{width:60px;height:60px;background:#FFD700;color:#1877F2;font-size:32px;font-weight:900;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
-.top h1{font-size:27px}.top h1 span{color:#FFD700}.top p{font-size:12px;opacity:.9}
-.progress{display:flex;gap:6px;padding:14px 20px 0}.progress div{flex:1;height:6px;background:#e4e6eb;border-radius:10px}.progress div.active{background:#1877F2}
-.body{padding:20px}.body h2{font-size:21px}.body p.sub{font-size:13px;color:#65676b;margin:4px 0 12px}
-label{font-size:12px;font-weight:700;color:#444;margin:10px 0 5px;display:block}
-input,select{width:100%;padding:13px;border:1.5px solid #dddfe2;border-radius:12px;font-size:15px;outline:none;background:#f8f9fa}
-input:focus,select:focus{border-color:#1877F2;background:#fff}
-input::placeholder{color:#aaa}
-.phone-row{display:flex;gap:8px}
-.phone-row select{flex:1.6;padding:12px 8px;font-size:14px}
-.phone-row .code-box{background:#1877F2;color:#fff;border-radius:12px;padding:13px 12px;font-weight:800;min-width:70px;text-align:center;font-size:15px}
-.phone-row input{flex:2}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:16px;cursor:pointer;margin-top:16px}
-.btn-blue{background:#1877F2;color:#fff}.btn-ghost{background:#f0f2f5;color:#111;margin-top:8px}.btn-yellow{background:#FFD700;color:#111}
-#msg,#msg3{text-align:center;font-size:13px;color:#e0245e;min-height:16px;margin-top:8px;font-weight:700}
-.hide{display:none}
-.photo-preview{width:130px;height:130px;border-radius:50%;background:#f0f2f5;border:3px dashed #1877F2;display:flex;align-items:center;justify-content:center;font-size:45px;margin:10px auto;overflow:hidden;color:#1877F2;cursor:pointer}
-.photo-preview img{width:100%;height:100%;object-fit:cover}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{padding:9px 14px;border:1.5px solid #ddd;border-radius:20px;font-size:13px;cursor:pointer}.chip.sel{background:#1877F2;color:#fff;border-color:#1877F2}
-.login-link{text-align:center;margin-top:14px;font-size:13px}.login-link b{color:#1877F2;cursor:pointer}
-.country-info{font-size:12px;color:#1877F2;font-weight:700;margin-top:4px}
+body{background:#f0f2f5;min-height:100vh}
+.topbar{background:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,.08);position:sticky;top:0;z-index:10}
+.logo{font-weight:900;color:#1877F2;font-size:24px;display:flex;align-items:center;gap:8px}
+.logo span{width:38px;height:38px;background:#1877F2;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo i{color:#FFD700;font-style:normal}
+.topbar .links{display:flex;gap:10px}
+.topbar .links button{border:none;padding:10px 18px;border-radius:20px;font-weight:800;cursor:pointer;font-size:14px}
+.btn-login{background:#f0f2f5}.btn-signup{background:#42b72a;color:#fff}
+.hero{display:flex;gap:30px;max-width:1000px;margin:30px auto;padding:0 16px;align-items:center;flex-wrap:wrap;justify-content:center}
+.hero-left{flex:1;min-width:280px;max-width:480px}
+.hero-left h1{font-size:42px;line-height:1.15;color:#1c1e21}
+.hero-left h1 span{color:#1877F2}
+.hero-left p{font-size:18px;color:#606770;margin:16px 0;line-height:1.5}
+.hero-left .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+.stat{background:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);text-align:center}
+.stat b{font-size:20px;color:#1877F2;display:block}.stat small{color:#65676b}
+.hero-right{flex:1;min-width:300px;max-width:420px}
+.card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.card h2{text-align:center;margin-bottom:14px;font-size:22px}
+.card input,.card select{width:100%;padding:13px 14px;border:1.5px solid #ddd;border-radius:10px;margin-bottom:10px;font-size:15px;outline:none}
+.card input:focus,.card select:focus{border-color:#1877F2}
+.btn-main{width:100%;padding:13px;border:none;border-radius:10px;background:#1877F2;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
+.btn-main:disabled{opacity:.6}
+.btn-green{width:100%;padding:13px;border:none;border-radius:10px;background:#42b72a;color:#fff;font-weight:800;font-size:16px;cursor:pointer;margin-top:12px}
+.link{color:#1877F2;text-align:center;display:block;margin-top:12px;cursor:pointer;font-size:14px;font-weight:600}
+.msg{text-align:center;font-size:13px;font-weight:700;min-height:18px;margin-top:8px}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;max-width:1000px;margin:24px auto;padding:0 16px}
+.feat{background:#fff;padding:16px;border-radius:12px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.feat .ico{font-size:32px}.feat b{display:block;margin:8px 0 4px}.feat small{color:#65676b;line-height:1.4;display:block}
+.preview{max-width:1000px;margin:24px auto;padding:0 16px}
+.preview h2{text-align:center;margin-bottom:12px}
+.preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.p-card{background:#fff;border-radius:12px;padding:14px;display:flex;gap:10px;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.p-card .av{width:48px;height:48px;border-radius:50%;background:#1877F2;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;overflow:hidden;flex-shrink:0}
+.p-card .av img{width:100%;height:100%;object-fit:cover}
+.footer{text-align:center;color:#999;font-size:12px;padding:30px 10px;line-height:1.8}
+.footer a{color:#999;text-decoration:none;margin:0 6px}
+@media(max-width:700px){.hero-left h1{font-size:32px}.topbar .links button{padding:8px 12px}}
 </style>
 </head>
 <body>
-<div class="card">
-<div class="top"><div class="j">J</div><h1>JASON<span>BOOK</span></h1><p>🌍 Poste, Like, Retrouve tes amis - Partout dans le monde</p></div>
-<div class="progress"><div id="bar1" class="active"></div><div id="bar2"></div><div id="bar3"></div></div>
-<div class="body">
 
-<!-- ÉTAPE 1 -->
-<div id="step1">
-<h2>Crée ton compte</h2><p class="sub">Étape 1 sur 3 • Pour le monde entier</p>
-
-<label>Nom *</label><input id="nom" placeholder="Nom">
-<label>Post-nom *</label><input id="postnom" placeholder="Post-nom">
-<label>Prénom *</label><input id="prenom" placeholder="Prénom">
-
-<label>Ton pays *</label>
-<select id="pays" onchange="changerPays()">
-<option value="+243" data-pays="République Démocratique du Congo">🇨🇩 République Démocratique du Congo</option>
-<option value="+242" data-pays="République du Congo">🇨🇬 République du Congo</option>
-<option value="+33" data-pays="France">🇫🇷 France</option>
-<option value="+32" data-pays="Belgique">🇧🇪 Belgique</option>
-<option value="+41" data-pays="Suisse">🇨🇭 Suisse</option>
-<option value="+352" data-pays="Luxembourg">🇱🇺 Luxembourg</option>
-<option value="+1" data-pays="États-Unis">🇺🇸 États-Unis</option>
-<option value="+1" data-pays="Canada">🇨🇦 Canada</option>
-<option value="+44" data-pays="Royaume-Uni">🇬🇧 Royaume-Uni</option>
-<option value="+34" data-pays="Espagne">🇪🇸 Espagne</option>
-<option value="+39" data-pays="Italie">🇮🇹 Italie</option>
-<option value="+49" data-pays="Allemagne">🇩🇪 Allemagne</option>
-<option value="+31" data-pays="Pays-Bas">🇳🇱 Pays-Bas</option>
-<option value="+351" data-pays="Portugal">🇵🇹 Portugal</option>
-<option value="+225" data-pays="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
-<option value="+221" data-pays="Sénégal">🇸🇳 Sénégal</option>
-<option value="+223" data-pays="Mali">🇲🇱 Mali</option>
-<option value="+224" data-pays="Guinée">🇬🇳 Guinée</option>
-<option value="+226" data-pays="Burkina Faso">🇧🇫 Burkina Faso</option>
-<option value="+227" data-pays="Niger">🇳🇪 Niger</option>
-<option value="+228" data-pays="Togo">🇹🇬 Togo</option>
-<option value="+229" data-pays="Bénin">🇧🇯 Bénin</option>
-<option value="+230" data-pays="Maurice">🇲🇺 Maurice</option>
-<option value="+231" data-pays="Liberia">🇱🇷 Liberia</option>
-<option value="+232" data-pays="Sierra Leone">🇸🇱 Sierra Leone</option>
-<option value="+233" data-pays="Ghana">🇬🇭 Ghana</option>
-<option value="+234" data-pays="Nigeria">🇳🇬 Nigeria</option>
-<option value="+235" data-pays="Tchad">🇹🇩 Tchad</option>
-<option value="+236" data-pays="Centrafrique">🇨🇫 Centrafrique</option>
-<option value="+237" data-pays="Cameroun">🇨🇲 Cameroun</option>
-<option value="+238" data-pays="Cap-Vert">🇨🇻 Cap-Vert</option>
-<option value="+239" data-pays="Sao Tomé">🇸🇹 Sao Tomé</option>
-<option value="+240" data-pays="Guinée Équatoriale">🇬🇶 Guinée Équatoriale</option>
-<option value="+241" data-pays="Gabon">🇬🇦 Gabon</option>
-<option value="+244" data-pays="Angola">🇦🇴 Angola</option>
-<option value="+245" data-pays="Guinée-Bissau">🇬🇼 Guinée-Bissau</option>
-<option value="+248" data-pays="Seychelles">🇸🇨 Seychelles</option>
-<option value="+249" data-pays="Soudan">🇸🇩 Soudan</option>
-<option value="+250" data-pays="Rwanda">🇷🇼 Rwanda</option>
-<option value="+251" data-pays="Éthiopie">🇪🇹 Éthiopie</option>
-<option value="+252" data-pays="Somalie">🇸🇴 Somalie</option>
-<option value="+253" data-pays="Djibouti">🇩🇯 Djibouti</option>
-<option value="+254" data-pays="Kenya">🇰🇪 Kenya</option>
-<option value="+255" data-pays="Tanzanie">🇹🇿 Tanzanie</option>
-<option value="+256" data-pays="Ouganda">🇺🇬 Ouganda</option>
-<option value="+257" data-pays="Burundi">🇧🇮 Burundi</option>
-<option value="+258" data-pays="Mozambique">🇲🇿 Mozambique</option>
-<option value="+260" data-pays="Zambie">🇿🇲 Zambie</option>
-<option value="+261" data-pays="Madagascar">🇲🇬 Madagascar</option>
-<option value="+263" data-pays="Zimbabwe">🇿🇼 Zimbabwe</option>
-<option value="+264" data-pays="Namibie">🇳🇦 Namibie</option>
-<option value="+265" data-pays="Malawi">🇲🇼 Malawi</option>
-<option value="+266" data-pays="Lesotho">🇱🇸 Lesotho</option>
-<option value="+267" data-pays="Botswana">🇧🇼 Botswana</option>
-<option value="+268" data-pays="Eswatini">🇸🇿 Eswatini</option>
-<option value="+269" data-pays="Comores">🇰🇲 Comores</option>
-<option value="+27" data-pays="Afrique du Sud">🇿🇦 Afrique du Sud</option>
-<option value="+291" data-pays="Érythrée">🇪🇷 Érythrée</option>
-<option value="+20" data-pays="Égypte">🇪🇬 Égypte</option>
-<option value="+211" data-pays="Soudan du Sud">🇸🇸 Soudan du Sud</option>
-<option value="+212" data-pays="Maroc">🇲🇦 Maroc</option>
-<option value="+213" data-pays="Algérie">🇩🇿 Algérie</option>
-<option value="+216" data-pays="Tunisie">🇹🇳 Tunisie</option>
-<option value="+218" data-pays="Libye">🇱🇾 Libye</option>
-<option value="+220" data-pays="Gambie">🇬🇲 Gambie</option>
-<option value="+222" data-pays="Mauritanie">🇲🇷 Mauritanie</option>
-<option value="+30" data-pays="Grèce">🇬🇷 Grèce</option>
-<option value="+36" data-pays="Hongrie">🇭🇺 Hongrie</option>
-<option value="+40" data-pays="Roumanie">🇷🇴 Roumanie</option>
-<option value="+43" data-pays="Autriche">🇦🇹 Autriche</option>
-<option value="+45" data-pays="Danemark">🇩🇰 Danemark</option>
-<option value="+46" data-pays="Suède">🇸🇪 Suède</option>
-<option value="+47" data-pays="Norvège">🇳🇴 Norvège</option>
-<option value="+48" data-pays="Pologne">🇵🇱 Pologne</option>
-<option value="+52" data-pays="Mexique">🇲🇽 Mexique</option>
-<option value="+54" data-pays="Argentine">🇦🇷 Argentine</option>
-<option value="+55" data-pays="Brésil">🇧🇷 Brésil</option>
-<option value="+56" data-pays="Chili">🇨🇱 Chili</option>
-<option value="+57" data-pays="Colombie">🇨🇴 Colombie</option>
-<option value="+58" data-pays="Venezuela">🇻🇪 Venezuela</option>
-<option value="+60" data-pays="Malaisie">🇲🇾 Malaisie</option>
-<option value="+61" data-pays="Australie">🇦🇺 Australie</option>
-<option value="+62" data-pays="Indonésie">🇮🇩 Indonésie</option>
-<option value="+63" data-pays="Philippines">🇵🇭 Philippines</option>
-<option value="+64" data-pays="Nouvelle-Zélande">🇳🇿 Nouvelle-Zélande</option>
-<option value="+65" data-pays="Singapour">🇸🇬 Singapour</option>
-<option value="+66" data-pays="Thaïlande">🇹🇭 Thaïlande</option>
-<option value="+81" data-pays="Japon">🇯🇵 Japon</option>
-<option value="+82" data-pays="Corée du Sud">🇰🇷 Corée du Sud</option>
-<option value="+84" data-pays="Vietnam">🇻🇳 Vietnam</option>
-<option value="+86" data-pays="Chine">🇨🇳 Chine</option>
-<option value="+90" data-pays="Turquie">🇹🇷 Turquie</option>
-<option value="+91" data-pays="Inde">🇮🇳 Inde</option>
-<option value="+92" data-pays="Pakistan">🇵🇰 Pakistan</option>
-<option value="+93" data-pays="Afghanistan">🇦🇫 Afghanistan</option>
-<option value="+94" data-pays="Sri Lanka">🇱🇰 Sri Lanka</option>
-<option value="+95" data-pays="Myanmar">🇲🇲 Myanmar</option>
-<option value="+98" data-pays="Iran">🇮🇷 Iran</option>
-<option value="+380" data-pays="Ukraine">🇺🇦 Ukraine</option>
-<option value="+381" data-pays="Serbie">🇷🇸 Serbie</option>
-<option value="+385" data-pays="Croatie">🇭🇷 Croatie</option>
-<option value="+7" data-pays="Russie">🇷🇺 Russie</option>
-<option value="+7" data-pays="Kazakhstan">🇰🇿 Kazakhstan</option>
-<option value="+355" data-pays="Albanie">🇦🇱 Albanie</option>
-<option value="+359" data-pays="Bulgarie">🇧🇬 Bulgarie</option>
-<option value="+370" data-pays="Lituanie">🇱🇹 Lituanie</option>
-<option value="+371" data-pays="Lettonie">🇱🇻 Lettonie</option>
-<option value="+372" data-pays="Estonie">🇪🇪 Estonie</option>
-<option value="+375" data-pays="Biélorussie">🇧🇾 Biélorussie</option>
-<option value="+376" data-pays="Andorre">🇦🇩 Andorre</option>
-<option value="+377" data-pays="Monaco">🇲🇨 Monaco</option>
-<option value="+378" data-pays="Saint-Marin">🇸🇲 Saint-Marin</option>
-<option value="+420" data-pays="Tchéquie">🇨🇿 Tchéquie</option>
-<option value="+421" data-pays="Slovaquie">🇸🇰 Slovaquie</option>
-<option value="+501" data-pays="Belize">🇧🇿 Belize</option>
-<option value="+502" data-pays="Guatemala">🇬🇹 Guatemala</option>
-<option value="+503" data-pays="Salvador">🇸🇻 Salvador</option>
-<option value="+504" data-pays="Honduras">🇭🇳 Honduras</option>
-<option value="+505" data-pays="Nicaragua">🇳🇮 Nicaragua</option>
-<option value="+506" data-pays="Costa Rica">🇨🇷 Costa Rica</option>
-<option value="+507" data-pays="Panama">🇵🇦 Panama</option>
-<option value="+509" data-pays="Haïti">🇭🇹 Haïti</option>
-<option value="+591" data-pays="Bolivie">🇧🇴 Bolivie</option>
-<option value="+592" data-pays="Guyana">🇬🇾 Guyana</option>
-<option value="+593" data-pays="Équateur">🇪🇨 Équateur</option>
-<option value="+595" data-pays="Paraguay">🇵🇾 Paraguay</option>
-<option value="+597" data-pays="Suriname">🇸🇷 Suriname</option>
-<option value="+598" data-pays="Uruguay">🇺🇾 Uruguay</option>
-<option value="+670" data-pays="Timor">🇹🇱 Timor</option>
-<option value="+673" data-pays="Brunei">🇧🇳 Brunei</option>
-<option value="+675" data-pays="Papouasie">🇵🇬 Papouasie</option>
-<option value="+676" data-pays="Tonga">🇹🇴 Tonga</option>
-<option value="+677" data-pays="Salomon">🇸🇧 Salomon</option>
-<option value="+678" data-pays="Vanuatu">🇻🇺 Vanuatu</option>
-<option value="+679" data-pays="Fidji">🇫🇯 Fidji</option>
-<option value="+680" data-pays="Palaos">🇵🇼 Palaos</option>
-<option value="+685" data-pays="Samoa">🇼🇸 Samoa</option>
-<option value="+686" data-pays="Kiribati">🇰🇮 Kiribati</option>
-<option value="+688" data-pays="Tuvalu">🇹🇻 Tuvalu</option>
-<option value="+850" data-pays="Corée du Nord">🇰🇵 Corée du Nord</option>
-<option value="+852" data-pays="Hong Kong">🇭🇰 Hong Kong</option>
-<option value="+853" data-pays="Macao">🇲🇴 Macao</option>
-<option value="+855" data-pays="Cambodge">🇰🇭 Cambodge</option>
-<option value="+856" data-pays="Laos">🇱🇦 Laos</option>
-<option value="+880" data-pays="Bangladesh">🇧🇩 Bangladesh</option>
-<option value="+886" data-pays="Taïwan">🇹🇼 Taïwan</option>
-<option value="+960" data-pays="Maldives">🇲🇻 Maldives</option>
-<option value="+961" data-pays="Liban">🇱🇧 Liban</option>
-<option value="+962" data-pays="Jordanie">🇯🇴 Jordanie</option>
-<option value="+963" data-pays="Syrie">🇸🇾 Syrie</option>
-<option value="+964" data-pays="Irak">🇮🇶 Irak</option>
-<option value="+965" data-pays="Koweït">🇰🇼 Koweït</option>
-<option value="+966" data-pays="Arabie Saoudite">🇸🇦 Arabie Saoudite</option>
-<option value="+967" data-pays="Yémen">🇾🇪 Yémen</option>
-<option value="+968" data-pays="Oman">🇴🇲 Oman</option>
-<option value="+970" data-pays="Palestine">🇵🇸 Palestine</option>
-<option value="+971" data-pays="Émirats Arabes Unis">🇦🇪 Émirats</option>
-<option value="+972" data-pays="Israël">🇮🇱 Israël</option>
-<option value="+973" data-pays="Bahreïn">🇧🇭 Bahreïn</option>
-<option value="+974" data-pays="Qatar">🇶🇦 Qatar</option>
-<option value="+975" data-pays="Bhoutan">🇧🇹 Bhoutan</option>
-<option value="+976" data-pays="Mongolie">🇲🇳 Mongolie</option>
-<option value="+977" data-pays="Népal">🇳🇵 Népal</option>
-<option value="+992" data-pays="Tadjikistan">🇹🇯 Tadjikistan</option>
-<option value="+993" data-pays="Turkménistan">🇹🇲 Turkménistan</option>
-<option value="+994" data-pays="Azerbaïdjan">🇦🇿 Azerbaïdjan</option>
-<option value="+995" data-pays="Géorgie">🇬🇪 Géorgie</option>
-<option value="+996" data-pays="Kirghizistan">🇰🇬 Kirghizistan</option>
-<option value="+998" data-pays="Ouzbékistan">🇺🇿 Ouzbékistan</option>
-</select>
-
-<label>Numéro de téléphone *</label>
-<div class="phone-row"><div class="code-box" id="codeAffiche">+243</div><input id="phone" type="tel" placeholder="Numéro de téléphone"></div>
-<div class="country-info" id="paysInfo">Pays : République Démocratique du Congo</div>
-
-<label>Gmail *</label><input id="email" type="email" placeholder="Gmail">
-<label>Mot de passe *</label><input id="pass" type="password" placeholder="Mot de passe">
-<label>Confirmer mot de passe *</label><input id="pass2" type="password" placeholder="Confirmer mot de passe">
-<p id="msg"></p>
-<button class="btn btn-blue" onclick="allerEtape2()">Suivant →</button>
-<div class="login-link">Tu as déjà un compte ? <b onclick="allerLogin()">Se connecter</b></div>
+<div class="topbar">
+<div class="logo"><span>J</span>JASON<i>BOOK</i></div>
+<div class="links"><button class="btn-login" onclick="showLogin()">Connexion</button><button class="btn-signup" onclick="showSignup()">Créer un compte</button></div>
 </div>
 
-<!-- LOGIN -->
-<div id="stepLogin" class="hide"><h2>Bon retour !</h2><p class="sub">Connecte-toi à JASONBOOK</p>
-<label>Gmail</label><input id="loginEmail" type="email" placeholder="Gmail"><label>Mot de passe</label><input id="loginPass" type="password" placeholder="Mot de passe"><p id="msgLogin"></p>
-<button class="btn btn-blue" onclick="seConnecter()">Se connecter</button><div class="login-link">Pas encore de compte ? <b onclick="retourInscription()">Créer un compte</b></div></div>
+<div class="hero">
+<div class="hero-left">
+<h1>Connecte-toi avec le <span>monde entier</span> sur JASONBOOK 🌍</h1>
+<p>Retrouve tes amis, partage tes photos, discute en messages privés, crée des groupes, regarde des stories. Gratuit, pour toujours.</p>
+<div class="stats">
+<div class="stat"><b id="statUsers">...</b><small>Membres</small></div>
+<div class="stat"><b id="statPosts">...</b><small>Publications</small></div>
+<div class="stat"><b>100% Gratuit</b><small>Pour toujours</small></div>
+</div>
+</div>
 
-<!-- ÉTAPE 2 PHOTO -->
-<div id="step2" class="hide"><h2>Ta photo de profil</h2><p class="sub">Étape 2 sur 3</p>
-<div style="text-align:center"><div class="photo-preview" onclick="document.getElementById('filePhoto').click()"><span>📷</span></div><input type="file" id="filePhoto" accept="image/*" style="display:none" onchange="previewPhoto(this)"><p style="font-size:13px;color:#65676b">Clique pour choisir ta photo</p></div>
-<button class="btn btn-blue" onclick="allerEtape3()">Suivant →</button><button class="btn btn-ghost" onclick="allerEtape3()">Passer cette étape</button></div>
+<div class="hero-right">
+<!-- CONNEXION -->
+<div class="card" id="boxLogin">
+<h2>Connexion</h2>
+<input id="loginId" placeholder="Téléphone ou Email">
+<input type="password" id="loginPass" placeholder="Mot de passe" onkeydown="if(event.key==='Enter') seConnecter()">
+<button class="btn-main" id="btnLogin" onclick="seConnecter()">Se connecter</button>
+<p class="msg" id="msgLogin"></p>
+<span class="link" onclick="motDePasseOublie()">Mot de passe oublié ?</span>
+<hr style="margin:16px 0;border:none;border-top:1px solid #eee">
+<button class="btn-green" onclick="showSignup()">Créer un nouveau compte</button>
+</div>
 
-<!-- ÉTAPE 3 ACTIVITÉ -->
-<div id="step3" class="hide"><h2>Tu fais quoi dans la vie ?</h2><p class="sub">Étape 3 sur 3</p>
-<label>Ton activité / Métier</label><select id="activite"><option value="">Choisis...</option><option>Étudiant</option><option>Élève</option><option>Commerçant</option><option>Entrepreneur</option><option>Musicien / Artiste</option><option>Footballeur</option><option>Coiffeur / Beauté</option><option>Chauffeur</option><option>Enseignant</option><option>Infirmier / Médecin</option><option>Informaticien</option><option>Journaliste</option><option>Ingénieur</option><option>Autre</option></select>
-<label>Ou écris toi-même :</label><input id="activiteLibre" placeholder="Ton activité">
-<div class="chips"><span class="chip" onclick="choisirChip(this)">Étudiant</span><span class="chip" onclick="choisirChip(this)">Business</span><span class="chip" onclick="choisirChip(this)">Musique</span><span class="chip" onclick="choisirChip(this)">Football</span><span class="chip" onclick="choisirChip(this)">Commerçant</span></div>
-<p id="msg3"></p><button class="btn btn-yellow" onclick="creerCompteFinal()">✨ Créer mon compte</button><button class="btn btn-ghost" onclick="creerCompteFinal()">Passer et créer mon compte →</button></div>
+<!-- INSCRIPTION -->
+<div class="card" id="boxSignup" style="display:none">
+<h2>Inscription</h2>
+<input id="insPrenom" placeholder="Prénom *">
+<input id="insNom" placeholder="Nom *">
+<input id="insPhone" placeholder="Téléphone (ex: +243...)">
+<input id="insEmail" placeholder="Email (optionnel)">
+<select id="insPays">
+<option value="">Pays *</option><option>Congo</option><option>France</option><option>Belgique</option><option>Suisse</option><option>Canada</option><option>Côte d'Ivoire</option><option>Sénégal</option><option>Cameroun</option><option>USA</option><option>Angleterre</option><option>Maroc</option><option>Algérie</option><option>Tunisie</option><option>Bénin</option><option>Togo</option><option>Gabon</option><option>Mali</option><option>Guinée</option><option>Autre</option>
+</select>
+<input id="insVille" placeholder="Ville *">
+<input id="insActivite" placeholder="Activité (Étudiant, Commerçant...)">
+<input type="password" id="insPass" placeholder="Mot de passe (6+ caractères) *">
+<input type="password" id="insPass2" placeholder="Confirmer le mot de passe *">
+<button class="btn-green" id="btnSignup" onclick="sInscrire()">S'inscrire</button>
+<p class="msg" id="msgSignup"></p>
+<span class="link" onclick="showLogin()">Tu as déjà un compte ? Connecte-toi</span>
+</div>
+</div>
+</div>
 
-</div></div>
+<div class="features">
+<div class="feat"><div class="ico">👥</div><b>Amis du monde</b><small>Trouve des amis partout</small></div>
+<div class="feat"><div class="ico">💬</div><b>Messages</b><small>Discute en privé, vocal</small></div>
+<div class="feat"><div class="ico">📖</div><b>Stories</b><small>Partage ton moment</small></div>
+<div class="feat"><div class="ico">👨‍👩‍👧</div><b>Groupes</b><small>Crée ta communauté</small></div>
+<div class="feat"><div class="ico">📷</div><b>Photos & Vidéos</b><small>Publie sans limite</small></div>
+<div class="feat"><div class="ico">🔔</div><b>Notifications</b><small>Reste informé</small></div>
+</div>
+
+<div class="preview">
+<h2>Ils sont déjà sur JASONBOOK 💙</h2>
+<div class="preview-grid" id="previewUsers"></div>
+</div>
+
+<div class="footer">
+<a href="#" onclick="alert('JASONBOOK - Réseau social gratuit pour le monde entier');return false">À propos</a> • <a href="#" onclick="alert('Tes données restent privées.');return false">Confidentialité</a> • <a href="#" onclick="alert('JASONBOOK © 2026 - Tous droits réservés');return false">Conditions</a><br>
+JASONBOOK © 2026 - Créé par Jason<br>
+Made with 💙 à Kinshasa, Congo
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import { getDatabase, ref, onValue, get, set, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 const firebaseConfig = { apiKey: "AIzaSyA24pBo8mBWiZssPtep--MMBdB7c8_Lu4U", authDomain: "starlink-investit.firebaseapp.com", databaseURL: "https://starlink-investit-default-rtdb.firebaseio.com", projectId: "starlink-investit", storageBucket: "starlink-investit.firebasestorage.app", messagingSenderId: "807081599583", appId: "1:807081599583:web:e00ec3959bc4acdae031ea" };
-const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getDatabase(app);
-let photoBase64="";
-function show(id){ ['step1','stepLogin','step2','step3'].forEach(s=>document.getElementById(s).classList.add('hide')); document.getElementById(id).classList.remove('hide'); }
-function setBar(n){ [1,2,3].forEach(i=>document.getElementById('bar'+i).classList.toggle('active', i<=n)); }
-window.changerPays = ()=>{
-  const sel=document.getElementById('pays'); const code=sel.value; const pays=sel.options[sel.selectedIndex].getAttribute('data-pays');
-  document.getElementById('codeAffiche').innerText=code;
-  document.getElementById('paysInfo').innerText="Pays : "+pays;
+const app = initializeApp(firebaseConfig); const db = getDatabase(app);
+
+// Déjà connecté ?
+if(localStorage.getItem('jasonbook_uid')) location.href='feed.html';
+
+window.showLogin=()=>{ document.getElementById('boxLogin').style.display="block"; document.getElementById('boxSignup').style.display="none"; };
+window.showSignup=()=>{ document.getElementById('boxLogin').style.display="none"; document.getElementById('boxSignup').style.display="block"; };
+
+window.sInscrire=async()=>{
+  const prenom=document.getElementById('insPrenom').value.trim();
+  const nom=document.getElementById('insNom').value.trim();
+  const phone=document.getElementById('insPhone').value.trim();
+  const email=document.getElementById('insEmail').value.trim().toLowerCase();
+  const pays=document.getElementById('insPays').value;
+  const ville=document.getElementById('insVille').value.trim();
+  const activite=document.getElementById('insActivite').value.trim();
+  const pass=document.getElementById('insPass').value;
+  const pass2=document.getElementById('insPass2').value;
+  const msg=document.getElementById('msgSignup');
+  if(!prenom || !nom || !pays || !ville){ msg.style.color="red"; msg.innerText="Prénom, nom, pays et ville sont obligatoires"; return; }
+  if(!phone && !email){ msg.style.color="red"; msg.innerText="Téléphone ou Email obligatoire"; return; }
+  if(pass.length<6){ msg.style.color="red"; msg.innerText="Mot de passe : 6 caractères minimum"; return; }
+  if(pass!==pass2){ msg.style.color="red"; msg.innerText="Les mots de passe ne correspondent pas"; return; }
+  document.getElementById('btnSignup').disabled=true; msg.style.color="#65676b"; msg.innerText="Création du compte...";
+  try{
+    // Vérifier doublon
+    const snap=await get(ref(db,'jasonbook/users')); const users=snap.val()||{};
+    for(const u of Object.values(users)){
+      if(phone && u.phone===phone){ msg.style.color="red"; msg.innerText="Ce téléphone est déjà utilisé"; document.getElementById('btnSignup').disabled=false; return; }
+      if(email && u.email===email){ msg.style.color="red"; msg.innerText="Cet email est déjà utilisé"; document.getElementById('btnSignup').disabled=false; return; }
+    }
+    const uid='user_'+Date.now()+'_'+Math.floor(Math.random()*9999);
+    const nomComplet=prenom+" "+nom;
+    await set(ref(db,'jasonbook/users/'+uid),{
+      uid:uid, prenom:prenom, nom:nom, nomComplet:nomComplet,
+      phone:phone, email:email, pays:pays, ville:ville, activite:activite||"Membre JASONBOOK",
+      bio:"Salut ! Je suis sur JASONBOOK 🌍", photoProfil:"", photoCouverture:"",
+      password:pass, dateInscription:new Date().toLocaleDateString(), timestamp:Date.now()
+    });
+    localStorage.setItem('jasonbook_uid', uid);
+    localStorage.setItem('jasonbook_nom', nomComplet);
+    localStorage.setItem('jasonbook_photo', "");
+    localStorage.setItem('jasonbook_pays', pays);
+    localStorage.setItem('jasonbook_ville', ville);
+    msg.style.color="green"; msg.innerText="Bienvenue sur JASONBOOK ! 🎉";
+    setTimeout(()=> location.href='feed.html', 800);
+  }catch(e){ msg.style.color="red"; msg.innerText="Erreur : "+e.message; document.getElementById('btnSignup').disabled=false; }
 };
-window.allerLogin=()=>show('stepLogin');
-window.retourInscription=()=>{ show('step1'); setBar(1); };
-window.allerEtape2=()=>{
-  const nom=document.getElementById('nom').value.trim(), postnom=document.getElementById('postnom').value.trim(), prenom=document.getElementById('prenom').value.trim(), phone=document.getElementById('phone').value.trim(), email=document.getElementById('email').value.trim(), pass=document.getElementById('pass').value, pass2=document.getElementById('pass2').value, msg=document.getElementById('msg');
-  if(!nom||!postnom||!prenom){ msg.innerText="Écris Nom, Post-nom et Prénom"; return; }
-  if(!phone){ msg.innerText="Mets ton numéro"; return; }
-  if(!email||!email.includes('@')){ msg.innerText="Mets un Gmail valide"; return; }
-  if(pass.length<6){ msg.innerText="Mot de passe : 6 caractères min"; return; }
-  if(pass!==pass2){ msg.innerText="Les 2 mots de passe ne sont pas pareils"; return; }
-  msg.innerText=""; show('step2'); setBar(2);
+
+window.seConnecter=async()=>{
+  const ident=document.getElementById('loginId').value.trim().toLowerCase();
+  const pass=document.getElementById('loginPass').value;
+  const msg=document.getElementById('msgLogin');
+  if(!ident || !pass){ msg.style.color="red"; msg.innerText="Remplis identifiant et mot de passe"; return; }
+  document.getElementById('btnLogin').disabled=true; msg.style.color="#65676b"; msg.innerText="Connexion...";
+  try{
+    const snap=await get(ref(db,'jasonbook/users')); const users=snap.val()||{};
+    let trouve=null;
+    for(const u of Object.values(users)){
+      if(((u.phone||"").toLowerCase()===ident || (u.email||"").toLowerCase()===ident) && u.password===pass){ trouve=u; break; }
+    }
+    if(!trouve){ msg.style.color="red"; msg.innerText="Identifiant ou mot de passe incorrect"; document.getElementById('btnLogin').disabled=false; return; }
+    localStorage.setItem('jasonbook_uid', trouve.uid);
+    localStorage.setItem('jasonbook_nom', trouve.nomComplet);
+    localStorage.setItem('jasonbook_photo', trouve.photoProfil||"");
+    localStorage.setItem('jasonbook_pays', trouve.pays||"");
+    localStorage.setItem('jasonbook_ville', trouve.ville||"");
+    msg.style.color="green"; msg.innerText="Bienvenue "+trouve.prenom+" !";
+    setTimeout(()=> location.href='feed.html', 600);
+  }catch(e){ msg.style.color="red"; msg.innerText="Erreur : "+e.message; document.getElementById('btnLogin').disabled=false; }
 };
-window.allerEtape3=()=>{ show('step3'); setBar(3); };
-window.previewPhoto=(input)=>{ const f=input.files[0]; if(!f) return; const r=new FileReader(); r.onload=e=>{ photoBase64=e.target.result; document.querySelector('.photo-preview').innerHTML=`<img src="${photoBase64}">`; }; r.readAsDataURL(f); };
-window.choisirChip=(el)=>{ document.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel')); el.classList.add('sel'); document.getElementById('activiteLibre').value=el.innerText; };
-window.creerCompteFinal=async()=>{
-  const nom=document.getElementById('nom').value.trim(), postnom=document.getElementById('postnom').value.trim(), prenom=document.getElementById('prenom').value.trim(), phoneNum=document.getElementById('phone').value.trim(), email=document.getElementById('email').value.trim(), pass=document.getElementById('pass').value;
-  const sel=document.getElementById('pays'); const code=sel.value; const pays=sel.options[sel.selectedIndex].getAttribute('data-pays');
-  const phoneComplet=code+" "+phoneNum;
-  const activite=document.getElementById('activiteLibre').value.trim()||document.getElementById('activite').value||"Non précisé";
-  const nomComplet=prenom+" "+nom+" "+postnom; const msg3=document.getElementById('msg3'); msg3.style.color="#1877F2"; msg3.innerText="Création de ton compte...";
-  try{ const cred=await createUserWithEmailAndPassword(auth,email,pass);
-    await set(ref(db,'jasonbook/users/'+cred.user.uid),{ uid:cred.user.uid, nom, postnom, prenom, nomComplet, phone:phoneComplet, pays, indicatif:code, email, photoProfil:photoBase64, photoCouverture:"", bio:"Salut, je suis "+prenom+" sur JASONBOOK !", activite, ville:pays, enLigne:true, role:"user", statut:"actif", dateInscription:new Date().toLocaleString() });
-    localStorage.setItem('jasonbook_uid',cred.user.uid); localStorage.setItem('jasonbook_nom',nomComplet); localStorage.setItem('jasonbook_photo',photoBase64); localStorage.setItem('jasonbook_pays',pays); localStorage.setItem('jasonbook_activite',activite);
-    msg3.style.color="green"; msg3.innerText="Bienvenue "+prenom+" ! 🎉"; setTimeout(()=>location.href='feed.html',900);
-  }catch(e){ msg3.style.color="#e0245e"; if(e.code==='auth/email-already-in-use') msg3.innerText="Ce Gmail existe déjà, connecte-toi."; else msg3.innerText="Erreur : "+e.message; }
+
+window.motDePasseOublie=()=>{
+  const ident=prompt("Entre ton téléphone ou email :");
+  if(!ident) return;
+  get(ref(db,'jasonbook/users')).then(snap=>{
+    const users=snap.val()||{}; let trouve=null;
+    for(const u of Object.values(users)){ if((u.phone||"").toLowerCase()===ident.toLowerCase() || (u.email||"").toLowerCase()===ident.toLowerCase()){ trouve=u; break; } }
+    if(trouve) alert("Ton mot de passe est : "+trouve.password+"\n\nNote-le bien !");
+    else alert("Aucun compte trouvé avec cet identifiant");
+  });
 };
-window.seConnecter=async()=>{ const email=document.getElementById('loginEmail').value.trim(), pass=document.getElementById('loginPass').value, m=document.getElementById('msgLogin'); if(!email||!pass){ m.innerText="Remplis Gmail et mot de passe"; return; } try{ const c=await signInWithEmailAndPassword(auth,email,pass); localStorage.setItem('jasonbook_uid',c.user.uid); m.style.color="green"; m.innerText="Bienvenue !"; setTimeout(()=>location.href='feed.html',700); }catch(e){ m.innerText="Gmail ou mot de passe incorrect."; } };
+
+// Stats + Aperçu membres
+onValue(ref(db,'jasonbook/users'), s=>{
+  const d=s.val(); const users=d?Object.values(d):[];
+  document.getElementById('statUsers').innerText=users.length||"0";
+  const box=document.getElementById('previewUsers'); box.innerHTML="";
+  users.slice(-8).reverse().forEach(u=>{
+    const lettre=(u.prenom||"?").charAt(0).toUpperCase();
+    box.innerHTML+=`<div class="p-card"><div class="av">${u.photoProfil?`<img src="${u.photoProfil}">`:lettre}</div><div><b style="font-size:14px">${u.nomComplet||""}</b><br><small style="color:#65676b">${u.ville||""} • ${u.pays||""}</small></div></div>`;
+  });
+  if(!users.length) box.innerHTML='<p style="color:#65676b">Sois le premier membre ! Inscris-toi 👆</p>';
+});
+onValue(ref(db,'jasonbook/posts'), s=>{ const d=s.val(); document.getElementById('statPosts').innerText=d?Object.keys(d).length:"0"; });
 </script>
-</body></html>
+</body>
+</html>
